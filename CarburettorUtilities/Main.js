@@ -1,16 +1,22 @@
 "use strict";
 
-/*import { commands } from "./Commands";
+import request from "../requestV2";
+import { commands } from "./Commands";
 import * as Checks from "./ChatChecks"
-import * as AfkTracker from "./AfkTracker";*/
+import * as AfkTracker from "./AfkTracker";
 
-//Basically the second thing I've written in JS, coming from the time I was still a (noob-y) Java main. Spare me!
-
-fetch("https://api.voxyl.net/player/stats/overall/e21d44c5-c1fd-4119-b55c-5baced12fd6e?api=HhtTKOr5nIvl8adDZMtaLAjsBhClrmvp")
-    .then(response => response.json())
-    .then(data => console.log(data));
+//Basically the second thing I've written in JS. Spare me!
 
 ChatLib.chat("Hello, world!")
+
+/*
+request({
+    url: "https://api.voxyl.net/player/stats/overall/e21d44c5-c1fd-4119-b55c-5baced12fd6e?api=HhtTKOr5nIvl8adDZMtaLAjsBhClrmvp",
+    json: true
+}).then(function(response) {
+    ChatLib.chat(response);
+});
+*/
 
 AfkTracker.initializeTrackers()
 
