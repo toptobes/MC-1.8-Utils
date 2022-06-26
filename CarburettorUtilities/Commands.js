@@ -16,9 +16,10 @@ export const commands = {
     },
 
     "//afk!": (args) => {
-        if (args.includes("--f") && !AfkTracker.afk) {
+        if (args.includes("--f") && AfkTracker.afk) {
             AfkTracker.setAfk(false);
-            ChatLib.chat(`&a<<<--- You aren't AFK --->>>`);
+        } else if (args.includes("--f") && !AfkTracker.afk) {
+            ChatLib.chat(`&a<<<--- You are not AFK --->>>`);
         } else {
             AfkTracker.setAfk(true);
         }
