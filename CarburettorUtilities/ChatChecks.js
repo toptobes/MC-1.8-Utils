@@ -24,16 +24,16 @@ export function checkForAutoGG(message) {
             ChatLib.say(`/ac ${getPhrase()}`);
         }, 2000);
     }
-}
 
-function getPhrase() {
-    return [
-        "Good fight! Have a nice day :D! Also, I like cars.", gOoDgAmE(), "GG!1!!!!1!!!1!!!", "!emaG dooG"
-    ][~~(Math.random() * 4)];
-}
+    function getPhrase() {
+        return [
+            "Good fight! Have a nice day :D! Also, I like cars.", gOoDgAmE(), "GG!1!!!!1!!!1!!!", "!emaG dooG"
+        ][~~(Math.random() * 4)];
+    }
 
-function gOoDgAmE() {
-    return "[...\"good game\"].map(c => (Math.random() < .5) ? c.toUpperCase() : c).join(\"\")";
+    function gOoDgAmE() {
+        return "[...\"good game\"].map(c => (Math.random() < .5) ? c.toUpperCase() : c).join(\"\")";
+    }
 }
 
 export function checkForAutoWhoForBedwarsPracticeDotClub(message) {
@@ -55,9 +55,14 @@ export function checkForAutoWhoForMMC(message) {
     prevMessage = message;
 }
 
+let afkResponseIndex = 0;
 export function checkForDmWhileAfk(message) {
     if (AfkTracker.afk && /^(?=From.*:)/.test(message)) {
         ChatLib.say(`/r ${getAfkResponse()} (Automated message)`);
+    }
+
+    function getAfkResponse() {
+        return ["Hey, I'm prob afk rn", "I'm afk rn, sorry!", "\\o, I'm afk rn", "Sorry, but I'm afk rn"][afkResponseIndex++];
     }
 }
 
@@ -65,9 +70,4 @@ export function checkForSentToLimbo(message) {
     if (message.includes("You are AFK. Move around to return from AFK.")) {
         AfkTracker.setAfk(true)
     }
-}
-
-let afkResponseIndex = 0;
-function getAfkResponse() {
-    return ["Hey, I'm prob afk rn", "I'm afk rn, sorry!", "\\o, I'm afk rn", "Sorry, but I'm afk rn"][afkResponseIndex++];
 }

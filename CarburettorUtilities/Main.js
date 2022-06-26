@@ -1,7 +1,6 @@
 "use strict";
 
 import { commands } from "./Commands";
-import { AfkTracker } from "./AfkTracker";
 import * as Checks from "./ChatChecks"
 
 //Basically the second thing I've written in JS, coming from the time I was still a (noob-y) Java main. Spare me!
