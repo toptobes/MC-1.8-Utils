@@ -29,12 +29,12 @@ export function checkForAutoGG(message) {
 
     function getPhrase() {
         return [
-            "Good fight! Have a nice day :D! Also, I like cars.", gOoDgAmE(), "GG!1!!!!1!!!1!!!", "!emaG dooG"
+            "Good fight! Have a nice day :D! Also, I like cars.", gOoDgAmE(), "GG!!!!!", "!emaG dooG"
         ][~~(Math.random() * 4)];
     }
 
     function gOoDgAmE() {
-        return '[..."good game"].map(c => (Math.random() < .5) ? c.toUpperCase() : c).join("")';
+        return [..."good game"].map(c => (Math.random() < .5) ? c.toUpperCase() : c).join("");
     }
 }
 
