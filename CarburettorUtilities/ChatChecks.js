@@ -1,6 +1,6 @@
 "use strict";
 
-import * as AfkTracker from "./AfkTracker";
+import { getAfk, setAfk } from "./AfkTracker";
 
 export function checkForAutoWelcomeBack(message) {
     if (message.includes("Guild > ") && message.includes("joined")) {
@@ -34,7 +34,7 @@ export function checkForAutoGG(message) {
     }
 
     function gOoDgAmE() {
-        return [..."good game"].map(c => (Math.random() < .5) ? c.toUpperCase() : c).join("");
+        return '(->> "good game" (seq) (map #(if (< 0.5 (rand)) (str/upper-case %) %)) (apply str))';
     }
 }
 
@@ -59,7 +59,7 @@ export function checkForAutoWhoForMMC(message) {
 
 let afkResponseIndex = 0;
 export function checkForDmWhileAfk(message) {
-    if (AfkTracker.afk && /^(?=From.*:)/.test(message)) {
+    if (getAfk() && /^(?=From.*:)/.test(message)) {
         ChatLib.say(`/r ${getAfkResponse()} (Automated message)`);
     }
 
@@ -70,6 +70,6 @@ export function checkForDmWhileAfk(message) {
 
 export function checkForSentToLimbo(message) {
     if (message.includes("You are AFK. Move around to return from AFK.")) {
-        AfkTracker.setAfk(true)
+        setAfk(true)
     }
 }

@@ -1,8 +1,8 @@
 "use strict";
 
-export let afk = false;
-export let prevX = Player.getX();
-export let prevY = Player.getY();
+let afk = false;
+let prevX = Player.getX();
+let prevY = Player.getY();
 
 export function initializeTrackers() {
     register("worldLoad", (_) => {
@@ -10,18 +10,25 @@ export function initializeTrackers() {
     });
 
     const isAFKChecker = TriggerRegister.registerStep(checkIfAfk);
-    isAFKChecker.setDelay(180);
+    isAFKChecker.setDelay(10);
 
     const isNotAFKChecker = TriggerRegister.registerStep(checkIfNotAfk);
     isNotAFKChecker.setDelay(3);
+}
+
+export function getAfk() {
+    return afk;
 }
 
 export function setAfk(newAfk) {
     const prevAfk = afk;
 
     afk = newAfk;
-    prevX = Player.getX();
-    prevY = Player.getY();
+
+    if (afk) {
+        prevX = Player.getX();
+        prevY = Player.getY();
+    }
 
     if (afk && prevAfk) {
         ChatLib.chat(`&8<<<--- You are AFK --->>>`);
@@ -32,13 +39,14 @@ export function setAfk(newAfk) {
     }
 }
 
-export function checkIfAfk() {
+function checkIfAfk() {
     if (afk || prevX === Player.getX() && prevY === Player.getY()) {
         setAfk(true);
     }
+    ChatLib.chat("Checked!")
 }
 
-export function checkIfNotAfk(afk) {
+function checkIfNotAfk() {
     if (prevX !== Player.getX() && prevY !== Player.getY()) {
         setAfk(false);
     }

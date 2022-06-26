@@ -1,6 +1,6 @@
 "use strict";
 
-import * as AfkTracker from "./AfkTracker";
+import { getAfk, setAfk } from "./AfkTracker";
 
 export const commands = {
     "//who": (_) => {
@@ -8,20 +8,20 @@ export const commands = {
     },
 
     "//afk?": (_) => {
-        if (AfkTracker.afk) {
-            ChatLib.chat(`&c<<<--- You are AFK --->>>`);
+        if (getAfk()) {
+            ChatLib.chat("&c<<<--- You are AFK --->>>");
         } else {
-            ChatLib.chat(`&a<<<--- You are not AFK --->>>`);
+            ChatLib.chat("&a<<<--- You are not AFK --->>>");
         }
     },
 
     "//afk!": (args) => {
-        if (args.includes("--f") && AfkTracker.afk) {
-            AfkTracker.setAfk(false);
-        } else if (args.includes("--f") && !AfkTracker.afk) {
+        if (args.includes("--f") && getAfk()) {
+            setAfk(false);
+        } else if (args.includes("--f") && !getAfk()) {
             ChatLib.chat(`&a<<<--- You are not AFK --->>>`);
         } else {
-            AfkTracker.setAfk(true);
+            setAfk(true);
         }
     }
 };
