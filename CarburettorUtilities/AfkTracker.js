@@ -10,7 +10,7 @@ export function initializeTrackers() {
     });
 
     const isAFKChecker = TriggerRegister.registerStep(checkIfAfk);
-    isAFKChecker.setDelay(10);
+    isAFKChecker.setDelay(120);
 
     const isNotAFKChecker = TriggerRegister.registerStep(checkIfNotAfk);
     isNotAFKChecker.setDelay(3);

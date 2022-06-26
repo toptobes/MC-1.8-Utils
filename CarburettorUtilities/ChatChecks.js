@@ -46,7 +46,6 @@ export function checkForAutoWhoForBedwarsPracticeDotClub(message) {
     }
 }
 
-
 let prevMessage;
 export function checkForAutoWhoForMMC(message) {
     if (/ .* Opponent: /.test(message) && / .* Map: /.test(prevMessage)) {
