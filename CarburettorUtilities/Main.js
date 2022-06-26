@@ -2,10 +2,13 @@
 
 import { commands } from "./Commands";
 import * as Checks from "./ChatChecks"
+import * as AfkTracker from "./AfkTracker";
 
 //Basically the second thing I've written in JS, coming from the time I was still a (noob-y) Java main. Spare me!
 
 ChatLib.chat("Hello, world!")
+
+AfkTracker.initializeTrackers()
 
 register("messageSent", (message, event) => {
     const command = message.split(" ")[0];

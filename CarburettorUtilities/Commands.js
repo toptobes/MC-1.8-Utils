@@ -1,6 +1,6 @@
 "use strict";
 
-import { AfkTracker } from "./AfkTracker";
+import * as AfkTracker from "./AfkTracker";
 
 export const commands = {
     "//who": (_) => {

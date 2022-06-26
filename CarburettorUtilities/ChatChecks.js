@@ -1,4 +1,6 @@
-import { AfkTracker } from "./AfkTracker";
+"use strict";
+
+import * as AfkTracker from "./AfkTracker";
 
 export function checkForAutoWelcomeBack(message) {
     if (message.includes("Guild > ") && message.includes("joined")) {
@@ -32,7 +34,7 @@ export function checkForAutoGG(message) {
     }
 
     function gOoDgAmE() {
-        return "[...\"good game\"].map(c => (Math.random() < .5) ? c.toUpperCase() : c).join(\"\")";
+        return '[..."good game"].map(c => (Math.random() < .5) ? c.toUpperCase() : c).join("")';
     }
 }
 

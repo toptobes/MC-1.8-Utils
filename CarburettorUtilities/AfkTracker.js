@@ -1,45 +1,45 @@
 "use strict";
 
-export const AfkTracker = {
-    afk: false,
-    prevX: Player.getX(),
-    prevY: Player.getY(),
+export let afk = false;
+export let prevX = Player.getX();
+export let prevY = Player.getY();
 
-    setAfk: function(afk) {
-        const prevAfk = this.afk;
+export function initializeTrackers() {
+    register("worldLoad", (_) => {
+        afk = false;
+    });
 
-        this.afk = afk;
-        this.prevX = Player.getX();
-        this.prevY = Player.getY();
+    const isAFKChecker = TriggerRegister.registerStep(checkIfAfk);
+    isAFKChecker.setDelay(180);
 
-        if (this.afk && prevAfk) {
-            ChatLib.chat(`&8<<<--- You are AFK --->>>`);
-        } else if (this.afk && !prevAfk) {
-            ChatLib.chat(`&8<<<--- You are now AFK --->>>`);
-        } else if (!this.afk && prevAfk) {
-            ChatLib.chat(`&a<<<--- You are no longer AFK --->>>`);
-        }
-    },
+    const isNotAFKChecker = TriggerRegister.registerStep(checkIfNotAfk);
+    isNotAFKChecker.setDelay(3);
+}
 
-    checkIfAfk: function() {
-        if (this.afk || this.prevX === Player.getX() && this.prevY === Player.getY()) {
-            this.setAfk(true);
-        }
-    },
+export function setAfk(newAfk) {
+    const prevAfk = afk;
 
-    checkIfNotAfk: function() {
-        if (this.prevX !== Player.getX() && this.prevY !== Player.getY()) {
-            this.afk = false;
-        }
+    afk = newAfk;
+    prevX = Player.getX();
+    prevY = Player.getY();
+
+    if (afk && prevAfk) {
+        ChatLib.chat(`&8<<<--- You are AFK --->>>`);
+    } else if (afk && !prevAfk) {
+        ChatLib.chat(`&8<<<--- You are now AFK --->>>`);
+    } else if (!afk && prevAfk) {
+        ChatLib.chat(`&a<<<--- You are no longer AFK --->>>`);
     }
-};
+}
 
-register("worldLoad", (_) => {
-    AfkTracker.afk = false;
-});
+export function checkIfAfk() {
+    if (afk || prevX === Player.getX() && prevY === Player.getY()) {
+        setAfk(true);
+    }
+}
 
-const isAFKChecker = TriggerRegister.registerStep(AfkTracker.checkIfAfk);
-isAFKChecker.setDelay(10);
-
-const isNotAFKChecker = TriggerRegister.registerStep(AfkTracker.checkIfNotAfk);
-isNotAFKChecker.setDelay(3);
+export function checkIfNotAfk(afk) {
+    if (prevX !== Player.getX() && prevY !== Player.getY()) {
+        setAfk(false);
+    }
+}
