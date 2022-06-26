@@ -25,11 +25,6 @@ export function setAfk(newAfk) {
 
     afk = newAfk;
 
-    if (afk) {
-        prevX = Player.getX();
-        prevY = Player.getY();
-    }
-
     if (afk && prevAfk) {
         ChatLib.chat(`&8<<<--- You are AFK --->>>`);
     } else if (afk && !prevAfk) {
@@ -43,7 +38,8 @@ function checkIfAfk() {
     if (afk || prevX === Player.getX() && prevY === Player.getY()) {
         setAfk(true);
     }
-    ChatLib.chat("Checked!")
+    prevX = Player.getX();
+    prevY = Player.getY();
 }
 
 function checkIfNotAfk() {
