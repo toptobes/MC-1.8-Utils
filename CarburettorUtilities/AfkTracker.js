@@ -1,5 +1,3 @@
-"use strict";
-
 let afk = false;
 let prevX = Player.getX();
 let prevY = Player.getY();

@@ -1,5 +1,3 @@
-"use strict";
-
 import { getAfk, setAfk } from "./AfkTracker";
 
 export const commands = {

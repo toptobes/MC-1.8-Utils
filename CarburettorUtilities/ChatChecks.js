@@ -1,6 +1,5 @@
-"use strict";
-
 import { getAfk, setAfk } from "./AfkTracker";
+import { showStatsFor } from "./BwpChatStats";
 
 export function checkForAutoWelcomeBack(message) {
     if (message.includes("Guild > ") && message.includes("joined")) {
@@ -34,7 +33,7 @@ export function checkForAutoGG(message) {
     }
 
     function gOoDgAmE() {
-        return '(->> "good game" (seq) (map #(if (< 0.5 (rand)) (str/upper-case %) %)) (apply str))';
+        return "(->> \"good game\" (seq) (map #(if (< 0.5 (rand)) (str/upper-case %) %)) (apply str))";
     }
 }
 
@@ -69,6 +68,14 @@ export function checkForDmWhileAfk(message) {
 
 export function checkForSentToLimbo(message) {
     if (message.includes("You are AFK. Move around to return from AFK.")) {
-        setAfk(true)
+        setAfk(true);
+    }
+}
+
+export function checkForDisplayingBWPStats(message) {
+    if (message.includes("Players in this game:")) {
+        setTimeout(() => {
+            showStatsFor(message.trim().split(" ").slice(4));
+        }, 500);
     }
 }
