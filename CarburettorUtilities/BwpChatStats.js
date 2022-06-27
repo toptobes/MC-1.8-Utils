@@ -11,7 +11,9 @@ const defaultRequest = {
     headers: {
         "User-Agent": "Mozilla/5.0 (ChatTriggers)"
     },
-    json: true
+    json: true,
+    connectionTimeout: 1000,
+    readTimeout: 1000
 }
 
 function callMojangApi(name) {
@@ -49,7 +51,7 @@ function mojangUrl(name) {
 }
 
 function bwpUrl(uuid) {
-    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=[Insert key here]`
+    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=[Api Key Here]`
 }
 
 function unique(value, index, self) {

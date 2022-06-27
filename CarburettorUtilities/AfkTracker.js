@@ -14,6 +14,7 @@ export function initializeTrackers() {
     isNotAFKChecker.setDelay(3);
 }
 
+//Getter required for non-traditional runtime, doesn't work without it for some reason
 export function getAfk() {
     return afk;
 }
