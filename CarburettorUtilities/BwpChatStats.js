@@ -50,8 +50,9 @@ function mojangUrl(name) {
     return `https://api.mojang.com/users/profiles/minecraft/${name}`
 }
 
+//TODO: Settings file & command that allows API key to be inputted
 function bwpUrl(uuid) {
-    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=[Api Key Here]`
+    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=[Api key here]`
 }
 
 function unique(value, index, self) {
