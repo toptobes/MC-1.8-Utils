@@ -2,7 +2,7 @@ import { getAfk, setAfk } from "./AfkTracker";
 import { showStatsFor } from "./BwpChatStats";
 
 export const commands = {
-    "//who": (_) => {;aaaaaaaaaZ
+    "//who": (_) => {
         //TODO: Make it work, because I accidentally deleted it
     },
 
