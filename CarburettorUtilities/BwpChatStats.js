@@ -20,7 +20,7 @@ function callMojangApi(name) {
             callBwpApi(name, response.id)
         })
         .catch(function(response) {
-            ChatLib.chat(`Error for ${name}: ${response}`);
+            ChatLib.chat(`Error for ${name}: ${JSON.stringify(response)}`);
         });
 }
 
@@ -30,7 +30,7 @@ function callBwpApi(name, uuid) {
             showStats(name, response)
         })
         .catch(function(response) {
-            ChatLib.chat(`Error for ${name}: ${response}`);
+            ChatLib.chat(`Error for ${name}: ${JSON.stringify(response)}`);
         });
 }
 

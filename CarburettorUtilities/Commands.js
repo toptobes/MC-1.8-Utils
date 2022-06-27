@@ -1,4 +1,5 @@
 import { getAfk, setAfk } from "./AfkTracker";
+import { showStatsFor } from "./BwpChatStats";
 
 export const commands = {
     "//who": (_) => {
@@ -21,7 +22,12 @@ export const commands = {
         } else {
             setAfk(true);
         }
+    },
+
+    "//stars": (args) => {
+        showStatsFor(args)
     }
 };
 
 commands["//afk"] = (args) => commands["//afk!"](args);
+commands["//s"] = (args) => commands["//stars"](args);
