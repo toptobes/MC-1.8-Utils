@@ -1,6 +1,6 @@
-import { commands } from "./Commands";
-import * as Checks from "./ChatChecks"
-import * as AfkTracker from "./AfkTracker";
+import { commands } from "./commands";
+import * as Checks from "./chatChecks"
+import * as AfkTracker from "./afkTracker";
 
 //Basically the second thing I've written in JS. Spare me!
 

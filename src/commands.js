@@ -1,5 +1,5 @@
-import { getAfk, setAfk } from "./AfkTracker";
-import { showStatsFor } from "./BwpChatStats";
+import { getAfk, setAfk } from "./afkTracker";
+import { showStatsFor } from "./bwpChatStats";
 
 export const commands = {
     "//who": (_) => {

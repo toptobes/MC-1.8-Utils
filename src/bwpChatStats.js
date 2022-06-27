@@ -1,5 +1,5 @@
 import request from "../requestV2";
-import { colorCodes, prestiges } from "./Prestiges";
+import { colorCodes, prestiges } from "./prestiges";
 
 export function showStatsFor(players) {
     players.filter(unique).forEach((name) => {
