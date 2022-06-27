@@ -1,21 +1,21 @@
 export const colorCodes = {
-    "dark-red": '4',
-    "red": 'c',
-    "gold": '6',
-    "yellow": '2',
-    "dark-green": '2',
-    "green": 'a',
-    "aqua": 'b',
-    "dark-aqua": '3',
-    "dark-blue": '1',
-    "blue": '9',
-    "light-purple": 'd',
-    "dark-purple": '5',
-    "white": 'f',
-    "gray": '7',
-    "dark-gray": '8',
-    "black": '0'
-}
+    "dark-red": "4",
+    "red": "c",
+    "gold": "6",
+    "yellow": "2",
+    "dark-green": "2",
+    "green": "a",
+    "aqua": "b",
+    "dark-aqua": "3",
+    "dark-blue": "1",
+    "blue": "9",
+    "light-purple": "d",
+    "dark-purple": "5",
+    "white": "f",
+    "gray": "7",
+    "dark-gray": "8",
+    "black": "0"
+};
 
 export const prestiges = [
     {
@@ -67,7 +67,7 @@ export const prestiges = [
         level: 900,
         star: "✫",
         color: "dark-purple"
-    },
+    }
     /*{
         level: 1000,
         star: "✫",
