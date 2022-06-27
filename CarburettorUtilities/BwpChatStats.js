@@ -35,11 +35,13 @@ function callBwpApi(name, uuid) {
 }
 
 function showStats(name, response) {
-    let colorCode = '&' + colorCodes[prestiges[~~(response.level / 100)].color]
+    const colorCode = '&' + colorCodes[prestiges[~~(response.level / 100)].color]
+
     if (name.localeCompare(Player.getName()) === 0) {
-        colorCode += '&n'
+        ChatLib.chat(`${colorCode}<<< [✫${response.level}] ${name} >>>`);
+    } else {
+        ChatLib.chat(`${colorCode}<-- [✫${response.level}] ${name} -->`);
     }
-    ChatLib.chat(`${colorCode}<<< [✫${response.level}] ${name} >>>`);
 }
 
 function mojangUrl(name) {
@@ -47,7 +49,7 @@ function mojangUrl(name) {
 }
 
 function bwpUrl(uuid) {
-    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=<Key here>`
+    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=[Insert key here]`
 }
 
 function unique(value, index, self) {
