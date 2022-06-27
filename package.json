@@ -1,7 +1,7 @@
 {
   "name": "carburettor1.8.9utils",
   "version": "1.0.0",
-  "description": "\"Collection of small utility mods I coded/am coding, also I made half of this in nodepad\"",
+  "description": "Collection of small utility mods I coded/am coding, also I made half of this in nodepad",
   "main": "index.js",
   "dependencies": {
     "prettier": "^2.5.1"
