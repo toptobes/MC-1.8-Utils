@@ -20,4 +20,4 @@ function copyFileToCTModule(file) {
     console.log(`>> ${file} was copied to destination`);
 }
 
-console.log("\n>>Success!\n");
+console.log("\n>> Success!\n");
