@@ -1,6 +1,7 @@
 import { commands } from "./commands";
 import * as Checks from "./chatChecks"
 import * as AfkTracker from "./afkTracker";
+import { doPartyInviteKick } from "./partyInviteKick";
 
 //Basically the second thing I've written in JS. Spare me!
 
@@ -30,4 +31,5 @@ register("chat", message => {
     Checks.checkForDmWhileAfk(message);
     Checks.checkForSentToLimbo(message);
     Checks.checkForDisplayingBWPStats(message);
+    doPartyInviteKick(message);
 }).setCriteria("${message}");

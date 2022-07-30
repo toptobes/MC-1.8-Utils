@@ -52,7 +52,7 @@ function mojangUrl(name) {
 
 //TODO: Settings file & command that allows API key to be inputted
 function bwpUrl(uuid) {
-    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=[Api key here]`;
+    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=HhtTKOr5nIvl8adDZMtaLAjsBhClrmvp`;
 }
 
 function unique(value, index, self) {
@@ -62,3 +62,21 @@ function unique(value, index, self) {
 function untrimUuid(uuid) {
     return uuid.slice(0, 8) + "-" + uuid.slice(8, 12) + "-" + uuid.slice(12, 16) + "-" + uuid.slice(16, 20) + "-" + uuid.slice(20);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

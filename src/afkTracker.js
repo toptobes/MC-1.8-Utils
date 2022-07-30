@@ -33,12 +33,16 @@ export function setAfk(newAfk) {
     }
 }
 
+export function resetLastCoords() {
+    prevX = Player.getX();
+    prevY = Player.getY();
+}
+
 function checkIfAfk() {
     if (afk || prevX === Player.getX() && prevY === Player.getY()) {
         setAfk(true);
     }
-    prevX = Player.getX();
-    prevY = Player.getY();
+    resetLastCoords();
 }
 
 function checkIfNotAfk() {

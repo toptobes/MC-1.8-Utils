@@ -1,5 +1,6 @@
-import { getAfk, setAfk } from "./afkTracker";
+import { getAfk, resetLastCoords, setAfk } from "./afkTracker";
 import { showStatsFor } from "./bwpChatStats";
+import { resetPartyInviteKick, startPartyInviteKick } from "./partyInviteKick";
 
 export const commands = {
     "//who": (_) => {
@@ -20,12 +21,21 @@ export const commands = {
         } else if (args.includes("--f") && !getAfk()) {
             ChatLib.chat(`&a<<<--- You are not AFK --->>>`);
         } else {
+            resetLastCoords();
             setAfk(true);
         }
     },
 
     "//stars": (args) => {
-        showStatsFor(args)
+        showStatsFor(args);
+    },
+
+    "//pik": (args) => {
+        if (args.includes("--c")) {
+            resetPartyInviteKick();
+        } else if (args.length === 2) {
+            startPartyInviteKick(args[0], args[1]);
+        }
     }
 };
 
