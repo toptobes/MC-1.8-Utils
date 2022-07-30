@@ -26,7 +26,7 @@ export const commands = {
         }
     },
 
-    "//stars": (args) => {
+    "//bwpstars": (args) => {
         showStatsFor(args);
     },
 
@@ -40,4 +40,4 @@ export const commands = {
 };
 
 commands["//afk"] = (args) => commands["//afk!"](args);
-commands["//s"] = (args) => commands["//stars"](args);
+commands["//bs"] = (args) => commands["//stars"](args);
