@@ -1,7 +1,32 @@
-import request from "../requestV2";
-import { colorCodes, prestiges } from "./prestiges";
+import request from '../requestV2';
+import { colors, prestiges } from './Prestiges';
+import Config from './Config';
 
-export function showStatsFor(players) {
+export function startBwpChatStats() {}
+
+register('command', (...args) => {
+    showStatsFor(args.join(', '));
+}).setName("/bwpstars")
+
+register('chat', (message) => {
+    checkForDisplayingBWPStats(message);
+    checkForAutoWhoForBedwarsPracticeDotClub(message);
+}).setCriteria('Players in this game: ${message}');
+
+function checkForDisplayingBWPStats(message) {
+    setTimeout(() => {
+        showStatsFor(message.trim().split(' '));
+    }, 500);
+}
+
+function checkForAutoWhoForBedwarsPracticeDotClub(message) {
+    setTimeout(() => {
+        ChatLib.chat(`ONLINE: ${message.trim().split(' ').join(', ')}`);
+    }, 200);
+}
+
+
+function showStatsFor(players) {
     players.filter(unique).forEach((name) => {
         callMojangApi(name);
     });
@@ -9,7 +34,7 @@ export function showStatsFor(players) {
 
 const defaultRequest = {
     headers: {
-        "User-Agent": "Mozilla/5.0 (ChatTriggers)"
+        'User-Agent': 'Mozilla/5.0 (ChatTriggers)'
     },
     json: true,
     connectionTimeout: 1000,
@@ -37,7 +62,7 @@ function callBwpApi(name, uuid) {
 }
 
 function showStats(name, response) {
-    const colorCode = "&" + colorCodes[prestiges[~~(response.level / 100)].color];
+    const colorCode = '&' + colors[prestiges[~~(response.level / 100)].color];
 
     if (name.localeCompare(Player.getName()) === 0) {
         ChatLib.chat(`${colorCode}<<< [✫${response.level}] ${name} >>>`);
@@ -52,7 +77,7 @@ function mojangUrl(name) {
 
 //TODO: Settings file & command that allows API key to be inputted
 function bwpUrl(uuid) {
-    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=HhtTKOr5nIvl8adDZMtaLAjsBhClrmvp`;
+    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=${Config.getSetting('Keys', 'Bwp Api Key')}`;
 }
 
 function unique(value, index, self) {
@@ -60,7 +85,7 @@ function unique(value, index, self) {
 }
 
 function untrimUuid(uuid) {
-    return uuid.slice(0, 8) + "-" + uuid.slice(8, 12) + "-" + uuid.slice(12, 16) + "-" + uuid.slice(16, 20) + "-" + uuid.slice(20);
+    return uuid.slice(0, 8) + '-' + uuid.slice(8, 12) + '-' + uuid.slice(12, 16) + '-' + uuid.slice(16, 20) + '-' + uuid.slice(20);
 }
 
 

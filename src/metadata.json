@@ -2,6 +2,9 @@
   "name": "carburettor's 1.8.9 utilities",
   "creator": "carburettor",
   "description": "Collection of small utility mods I coded/am coding, also I made half of this in nodepad",
-  "requires": ["requestV2"],
+  "requires": [
+    "requestV2",
+    "SettingsManager"
+  ],
   "entry": "index.js"
 }

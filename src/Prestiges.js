@@ -1,72 +1,72 @@
-export const colorCodes = {
-    "dark-red": "4",
-    "red": "c",
-    "gold": "6",
-    "yellow": "2",
-    "dark-green": "2",
-    "green": "a",
-    "aqua": "b",
-    "dark-aqua": "3",
-    "dark-blue": "1",
-    "blue": "9",
-    "light-purple": "d",
-    "dark-purple": "5",
-    "white": "f",
-    "gray": "7",
-    "dark-gray": "8",
-    "black": "0"
+export const colors = {
+    'dark-red': '4',
+    'red': 'c',
+    'gold': '6',
+    'yellow': '2',
+    'dark-green': '2',
+    'green': 'a',
+    'aqua': 'b',
+    'dark-aqua': '3',
+    'dark-blue': '1',
+    'blue': '9',
+    'light-purple': 'd',
+    'dark-purple': '5',
+    'white': 'f',
+    'gray': '7',
+    'dark-gray': '8',
+    'black': '0'
 };
 
 export const prestiges = [
     {
         level: 0,
-        star: "✫",
-        color: "gray"
+        star: '✫',
+        color: 'gray'
     },
     {
         level: 100,
-        star: "✫",
-        color: "white"
+        star: '✫',
+        color: 'white'
     },
     {
         level: 200,
-        star: "✫",
-        color: "gold"
+        star: '✫',
+        color: 'gold'
     },
     {
         level: 300,
-        star: "✫",
-        color: "aqua"
+        star: '✫',
+        color: 'aqua'
     },
     {
         level: 400,
-        star: "✫",
-        color: "dark-green"
+        star: '✫',
+        color: 'dark-green'
     },
     {
         level: 500,
-        star: "✫",
-        color: "dark-aqua"
+        star: '✫',
+        color: 'dark-aqua'
     },
     {
         level: 600,
-        star: "✫",
-        color: "dark-red"
+        star: '✫',
+        color: 'dark-red'
     },
     {
         level: 700,
-        star: "✫",
-        color: "light-purple"
+        star: '✫',
+        color: 'light-purple'
     },
     {
         level: 800,
-        star: "✫",
-        color: "blue"
+        star: '✫',
+        color: 'blue'
     },
     {
         level: 900,
-        star: "✫",
-        color: "dark-purple"
+        star: '✫',
+        color: 'dark-purple'
     }
     /*{
         level: 1000,

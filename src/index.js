@@ -1,35 +1,9 @@
-import { commands } from "./commands";
-import * as Checks from "./chatChecks"
-import * as AfkTracker from "./afkTracker";
-import { doPartyInviteKick } from "./partyInviteKick";
-
 //Basically the second thing I've written in JS. Spare me!
 
-ChatLib.chat("Hello, world!")
+import { startAfkTracker } from './AfkTracker';
+import { startIncomingPlayerKeybindListener } from './IncomingPlayerKeybindListener';
+import { startPartyInviteKickCommand } from './PartyInviteKick';
+import { startBwpChatStats } from './BwpChatStats';
+import { startMiscChatChecks } from './MiscChatChecks';
 
-AfkTracker.initializeTrackers()
-
-register("messageSent", (message, event) => {
-    const command = message.split(" ")[0];
-    const args = message.split(" ").slice(1);
-
-    if (!commands.hasOwnProperty(command) || args.includes("--i")) {
-        return;
-    }
-
-    commands[command](args);
-
-    event.cancelled = true;
-});
-
-register("chat", message => {
-    Checks.checkForAutoWelcomeBack(message);
-    Checks.checkForAutoReportInGuildChat(message);
-    Checks.checkForAutoGG(message);
-    Checks.checkForAutoWhoForBedwarsPracticeDotClub(message);
-    Checks.checkForAutoWhoForMMC(message);
-    Checks.checkForDmWhileAfk(message);
-    Checks.checkForSentToLimbo(message);
-    Checks.checkForDisplayingBWPStats(message);
-    doPartyInviteKick(message);
-}).setCriteria("${message}");
+ChatLib.chat('Hello, world!');
