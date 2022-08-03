@@ -25,7 +25,6 @@ function checkForAutoWhoForBedwarsPracticeDotClub(message) {
     }, 200);
 }
 
-
 function showStatsFor(players) {
     players.filter(unique).forEach((name) => {
         callMojangApi(name);
@@ -75,7 +74,6 @@ function mojangUrl(name) {
     return `https://api.mojang.com/users/profiles/minecraft/${name}`;
 }
 
-//TODO: Settings file & command that allows API key to be inputted
 function bwpUrl(uuid) {
     return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=${Config.getSetting('Keys', 'Bwp Api Key')}`;
 }
