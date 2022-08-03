@@ -27,10 +27,11 @@ export function doPartyInviteKick(message) {
         }, 500);
     }
 
-    const pInviteExpired = message.contains("the party invite to ") && message.contains(" has expired") && message.contains(` ${name} `);
+    const pInviteExpired = message.includes("the party invite to ") && message.includes(" has expired") && message.includes(` ${name} `);
     const playerLeft = message.includes("you cannot invite that player since they're not online.");
+    const playerDoesntExist = message.includes("couldn't find a player with that name!");
 
-    if (!numTimes || pInviteExpired || (playerLeft && numTimes)) {
+    if (!numTimes || numTimes && (pInviteExpired || playerLeft || playerDoesntExist)) {
         resetPartyInviteKick();
     }
 }
@@ -38,5 +39,7 @@ export function doPartyInviteKick(message) {
 export function resetPartyInviteKick() {
     enabled = false;
     numTimes = 0;
-    ChatLib.chat(`&8<<<--- Party invite kick stopped --->>>`);
+    setTimeout(() => {
+        ChatLib.chat(`&c<<<--- Party invite kick stopped --->>>`);
+    }, 200);
 }

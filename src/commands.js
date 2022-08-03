@@ -4,7 +4,7 @@ import { resetPartyInviteKick, startPartyInviteKick } from "./partyInviteKick";
 
 export const commands = {
     "//who": (_) => {
-        //TODO: Make it work, because I accidentally deleted it
+        ChatLib.chat("&a<<<--- oh oops I accidentally deleted it --->>>");
     },
 
     "//afk?": (_) => {
@@ -36,8 +36,8 @@ export const commands = {
         } else if (args.length === 2) {
             startPartyInviteKick(args[0], args[1]);
         }
-    }
+    },
 };
 
 commands["//afk"] = (args) => commands["//afk!"](args);
-commands["//bs"] = (args) => commands["//stars"](args);
+commands["//bs"] = (args) => commands["//bwpstars"](args);
