@@ -1,0 +1,103 @@
+[
+  {
+    "name": "Test Category 1",
+    "settings": [
+      {
+        "type": "toggle",
+        "name": "Test Toggle",
+        "value": true,
+        "hidden": false
+      },
+      {
+        "type": "color_picker",
+        "name": "Test Color",
+        "value": [
+          200,
+          130,
+          255
+        ],
+        "hidden": false
+      },
+      {
+        "type": "string_selector",
+        "name": "Test Selector",
+        "value": 0,
+        "options": [
+          "This is a test option",
+          "This is another test option",
+          "Yet another test option",
+          "String",
+          ":)"
+        ],
+        "hidden": false
+      },
+      {
+        "type": "text_input",
+        "name": "Text Input",
+        "text": "&ct&5e&es&at",
+        "hidden": false
+      },
+      {
+        "type": "slider",
+        "name": "Slider",
+        "value": 50,
+        "min": 0,
+        "max": 100,
+        "round": 3,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "name": "Category 2",
+    "settings": [
+      {
+        "type": "toggle",
+        "name": "toggle",
+        "value": false,
+        "hidden": false
+      },
+      {
+        "type": "toggle",
+        "name": "another one",
+        "value": true,
+        "hidden": false
+      },
+      {
+        "type": "color_picker",
+        "name": "color",
+        "value": [
+          0,
+          0,
+          0
+        ],
+        "hidden": false
+      },
+      {
+        "type": "color_picker",
+        "name": "and another one",
+        "value": [
+          255,
+          255,
+          255
+        ],
+        "hidden": false
+      },
+      {
+        "type": "toggle",
+        "name": "hidden toggle",
+        "value": true,
+        "hidden": true
+      },
+      {
+        "type": "slider",
+        "name": "slider",
+        "value": 1000,
+        "min": 500,
+        "max": 5000,
+        "round": 0,
+        "hidden": false
+      }
+    ]
+  }
+]

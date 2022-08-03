@@ -1,0 +1,6 @@
+{
+	"name": "SettingsManager",
+	"author": "kerbybit",
+	"description": "Autogenerates a settings file and gui based on the object created and registers. Example usage can be found in UseExample.js",
+	"version": "1.2.2"
+}
