@@ -1,9 +1,6 @@
-let enabled = false;
-
 let name = "";
+let enabled = false;
 let numTimes = 0;
-
-let cooldown = false;
 
 export function startPartyInviteKick(_name, _numTimes) {
     if (enabled) return;
@@ -17,27 +14,29 @@ export function startPartyInviteKick(_name, _numTimes) {
 }
 
 export function doPartyInviteKick(message) {
-    if (!enabled || cooldown) return;
+    if (!enabled) return;
 
-    if (message.toLowerCase().includes(`${name} joined the party.`)) {
+    message = message.toLowerCase();
+
+    if (message.includes(`${name} joined the party.`)) {
         ChatLib.say(`/p kick ${name}`);
         numTimes--;
 
-        cooldown = true;
         setTimeout(() => {
             ChatLib.say(`/p invite ${name}`);
-            cooldown = false;
         }, 500);
     }
 
-    if (!numTimes) {
+    const pInviteExpired = message.contains("the party invite to ") && message.contains(" has expired") && message.contains(` ${name} `);
+    const playerLeft = message.includes("you cannot invite that player since they're not online.");
+
+    if (!numTimes || pInviteExpired || (playerLeft && numTimes)) {
         resetPartyInviteKick();
-        ChatLib.chat(`&a<<<--- Party invite kick stopped --->>>`);
     }
 }
 
 export function resetPartyInviteKick() {
     enabled = false;
-    cooldown = false;
     numTimes = 0;
+    ChatLib.chat(`&8<<<--- Party invite kick stopped --->>>`);
 }
