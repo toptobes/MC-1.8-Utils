@@ -1,11 +1,14 @@
 let yKeyBind = getKeyBindFromKey(Keyboard.KEY_Y, 'Y - Incoming player');
+let kKeyBind = getKeyBindFromKey(Keyboard.KEY_K, 'K - /who');
+let lKeyBind = getKeyBindFromKey(Keyboard.KEY_L, 'L - /l (k1)');
+let mKeyBind = getKeyBindFromKey(Keyboard.KEY_M, 'M - /l (k2)');
 
-export function startIncomingPlayerKeybindListener() {}
+export function startKeybindListeners() {}
 
 function getKeyBindFromKey(key, description) {
     let mcKeyBind = Client.getKeyBindFromKey(key);
 
-    if (mcKeyBind == null || mcKeyBind == undefined) {
+    if (!mcKeyBind) {
         mcKeyBind = new KeyBind(description, key);
     }
 
@@ -20,6 +23,14 @@ register('tick', () => {
             'Void, inc',
             'Void, someone inc',
             'Void, incoming'
-        ][cycle++ % 4]);
+        ][cycle = ++cycle % 4]);
+    }
+
+    if (kKeyBind.isPressed()) {
+        ChatLib.say('/who');
+    }
+
+    if (lKeyBind.isPressed() && mKeyBind.isPressed()) {
+        ChatLib.say('/l');
     }
 });

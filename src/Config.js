@@ -17,7 +17,9 @@ let Config = new SettingsObject('CarburettorUtilities', [
     }
 ]);
 
-Config.setCommand('cu').setSize(250, 75).setColor(0xfff9ac59);
+Config.setCommand('cu')
+    .setSize(250, 90)
+    .setColor(0xffd1d934);
 
 Setting.register(Config);
 

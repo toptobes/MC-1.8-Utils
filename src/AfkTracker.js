@@ -31,6 +31,7 @@ export function startAfkTracker() {}
 
     register('worldLoad', (_) => {
         this.disabled = true;
+
         setTimeout(() => {
             this.disabled = false;
         }, 3000);
@@ -43,7 +44,7 @@ export function startAfkTracker() {}
             setAfk(true);
         }
         resetLastCoords();
-    }).setDelay(180);
+    }).setDelay(150);
 
     register('step', () => {
         if (prevX !== Player.getX() && prevY !== Player.getY()) {
@@ -60,12 +61,14 @@ export function startAfkTracker() {}
     this.afkResponseIndex = 0;
 
     register('chat', () => {
-        ChatLib.chat(`/r ${getAfkResponse()} (Automated message)`);
+        if (isAfk) {
+            ChatLib.say(`/r ${getAfkResponse()} (Automated message)`);
+        }
 
         function getAfkResponse() {
             return ['Hey, I\'m prob afk rn', 'I\'m afk rn, sorry!', '\\o, I\'m afk rn', 'Sorry, but I\'m afk rn'][afkResponseIndex++ % 4];
         }
-    }).setCriteria('From ${rank} ${name}: ${message}');
+    }).setCriteria('From ${rank_plus_name}: ${message}');
 }());
 
 function tellPlayerIfAfkOrNot() {
@@ -80,7 +83,9 @@ function setAfk(newAfk) {
     const prevAfk = isAfk;
     isAfk = newAfk;
 
-    resetLastCoords();
+    if (isAfk) {
+        resetLastCoords();
+    }
 
     switch (true) {
         case isAfk && prevAfk:

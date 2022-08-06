@@ -1,12 +1,12 @@
-import { showStatsFor } from './BwpChatStats';
+// import { showStatsFor } from './BwpChatStats';
 
 export function startMiscChatChecks() {}
 
 register('chat', (message) => {
     checkForAutoWelcomeBack(message);
-    checkForAutoReportInGuildChat(message);
+    // checkForAutoReportInGuildChat(message);
     checkForAutoGG(message);
-    checkForAutoWhoForMMC(message);
+    // checkForAutoWhoForMMC(message);
 }).setCriteria('${message}');
 
 function checkForAutoWelcomeBack(message) {
@@ -15,7 +15,7 @@ function checkForAutoWelcomeBack(message) {
     }
 }
 
-function checkForAutoReportInGuildChat(message) {
+/*function checkForAutoReportInGuildChat(message) {
     if (message.includes('§2Guild') && ['/report', '/cr', '/wdr'].some(value => message.includes(value))) {
         const report = message.slice(message.lastIndexOf(':') + 1).trim();
 
@@ -25,11 +25,11 @@ function checkForAutoReportInGuildChat(message) {
             ChatLib.say(`/gc Done reporting ${report.split(' ')[1]}!`);
         }, 1000);
     }
-}
+}*/
 
 function checkForAutoGG(message) {
     if ([' 1st Killer - ', '% - Bow Accuracy - ', '% - Melee Accuracy - '].some(value => message.includes(value))) {
-        setTimeout(() => {
+       setTimeout(() => {
             ChatLib.say(`/ac ${getPhrase()}`);
         }, 2000);
     }
@@ -45,6 +45,7 @@ function checkForAutoGG(message) {
     }
 }
 
+/*
 let prevMessage;
 function checkForAutoWhoForMMC(message) {
     if (/ .* Opponent: /.test(message) && / .* Map: /.test(prevMessage)) {
@@ -53,4 +54,4 @@ function checkForAutoWhoForMMC(message) {
         }, 200);
     }
     prevMessage = message;
-}
+}*/

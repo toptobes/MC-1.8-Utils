@@ -6,7 +6,7 @@ export function startBwpChatStats() {}
 
 register('command', (...args) => {
     showStatsFor(args.join(', '));
-}).setName("/bwpstars")
+}).setName("/bwpstars");
 
 register('chat', (message) => {
     checkForDisplayingBWPStats(message);
