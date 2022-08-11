@@ -7,6 +7,18 @@ register('chat', (message) => {
     // checkForAutoReportInGuildChat(message);
     checkForAutoGG(message);
     // checkForAutoWhoForMMC(message);
+
+    if (message.includes("mefliolover321 was killed by")) {
+        setTimeout(() => {
+            ChatLib.say("/pc Owie.");
+        }, 1000);
+    }
+
+    if (message.includes("mefliolover321 fell into the void.")) {
+        setTimeout(() => {
+            ChatLib.say("/pc Youch.");
+        }, 1000);
+    }
 }).setCriteria('${message}');
 
 function checkForAutoWelcomeBack(message) {
