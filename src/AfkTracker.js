@@ -72,7 +72,7 @@ export function startAfkTracker() {}
     }).setCriteria('You are AFK. Move around to return from AFK.');
 }());
 
-(function registerPlayerResponderWhenAfk() {
+(function registerPlayerResponderForWhenAfk() {
     if (!Config.get('Afk Tracker|Enabled'))
         return;
 

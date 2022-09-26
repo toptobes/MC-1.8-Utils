@@ -1,3 +1,5 @@
+import { chatf, RED } from './Chat';
+
 let commandNames = {};
 
 export function registerCommand(name, callback) {
@@ -5,5 +7,9 @@ export function registerCommand(name, callback) {
 }
 
 register('command', (...[commandName, ...args]) => {
-    commandNames[commandName]?.(args);
+    if (commandNames[commandName]) {
+        commandNames[commandName](...args);
+    } else {
+        chatf(RED, '<<<--- Unknown command --->>>');
+    }
 }).setName('cu');

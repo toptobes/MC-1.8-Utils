@@ -1,4 +1,3 @@
-//Make uppercase constant variables contianing the minecraft color codes
 export const BLACK = "§0";
 export const DARK_BLUE = "§1";
 export const DARK_GREEN = "§2";
@@ -20,14 +19,14 @@ export const BOLD = "§l";
 export const STRIKETHROUGH = "§m";
 export const UNDERLINE = "§n";
 
-export function chat(message) {
-    ChatLib.chat(message);
+export function chat(msg) {
+    ChatLib.chat(msg);
 }
 
-export function chatf(formatting, _) {
-    ChatLib.chat(`${formatting}${_}`);
+export function chatf(formatting, msg) {
+    ChatLib.chat(`${formatting}${msg}`);
 }
 
-export function say(message) {
-    ChatLib.say(message);
+export function say(msg) {
+    ChatLib.say(msg);
 }

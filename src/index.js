@@ -1,4 +1,5 @@
-//Basically the second thing I've written in JS. Spare me!
+// Basically the second thing I've written in JS. Spare me!
+// Some JS is unconventional due to the Rhino engine's quirks.
 
 import { startAfkTracker } from './AfkTracker';
 import { startKeybindListeners } from './KeybindListener';
