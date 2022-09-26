@@ -6,5 +6,6 @@ import { startPartyInviteKickCommand } from './PartyInviteKick';
 import { startBwpChatStats } from './BwpChatStats';
 import { startMiscChatChecks } from './MiscChatChecks';
 import { startHypixelChatStats } from './HypixelChatStats';
+import { StartQuickLeave } from './QuickLeave';
 
 ChatLib.chat('Hello, world!');

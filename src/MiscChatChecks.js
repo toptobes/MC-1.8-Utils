@@ -1,40 +1,33 @@
-// import { showStatsFor } from './BwpChatStats';
+import Config from './Config';
+import { say } from './Chat';
 
 export function startMiscChatChecks() {}
 
 register('chat', (message) => {
-    // checkForAutoWelcomeBack(message);
-    // checkForAutoReportInGuildChat(message);
-    checkForAutoGG(message);
-    // checkForAutoWhoForMMC(message);
+    if (Config.get('Misc Chat Checks|Auto GG'))
+        checkForAutoGG(message);
+
+    if (Config.get('Misc Chat Checks|Auto Who'))
+        checkForAutoWho(message);
 }).setCriteria('${message}');
 
-/*
-function checkForAutoWelcomeBack(message) {
-    if (message.includes('Guild > ') && message.includes('joined')) {
-        ChatLib.say(`/gc Welcome back, ${message.split(' ')[message.split(' ').length - 2]}`);
-    }
-}
-*/
+function checkForAutoWho(message) {
+    let isAutoWhoTime = message.includes('Sending you to mini') && message.endsWith('!');
 
-/*function checkForAutoReportInGuildChat(message) {
-    if (message.includes('§2Guild') && ['/report', '/cr', '/wdr'].some(value => message.includes(value))) {
-        const report = message.slice(message.lastIndexOf(':') + 1).trim();
-
-        ChatLib.say(report);
-
+    if (isAutoWhoTime)
         setTimeout(() => {
-            ChatLib.say(`/gc Done reporting ${report.split(' ')[1]}!`);
-        }, 1000);
-    }
-}*/
+            say('/who');
+        }, 300);
+}
 
 function checkForAutoGG(message) {
-    if ([' 1st Killer - ', '% - Bow Accuracy - ', '% - Melee Accuracy - '].some(value => message.includes(value))) {
-       setTimeout(() => {
-            ChatLib.say(`/ac ${getPhrase()}`);
+    let isAutoGGTime = [' 1st Killer - ', '% - Bow Accuracy - ', '% - Melee Accuracy - ']
+        .some(value => message.includes(value));
+
+    if (isAutoGGTime)
+        setTimeout(() => {
+            say(`/ac ${getPhrase()}`);
         }, 2000);
-    }
 
     function getPhrase() {
         return [
@@ -46,14 +39,3 @@ function checkForAutoGG(message) {
         return '(->> "good game" (seq) (map #(if (< 0.5 (rand)) (str/upper-case %) %)) (apply str))';
     }
 }
-
-/*
-let prevMessage;
-function checkForAutoWhoForMMC(message) {
-    if (/ .* Opponent: /.test(message) && / .* Map: /.test(prevMessage)) {
-        setTimeout(() => {
-            ChatLib.chat(`ONLINE: ${message.split(':')[1].trim()}, ${Player.getName()}`);
-        }, 200);
-    }
-    prevMessage = message;
-}*/

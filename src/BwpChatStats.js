@@ -1,17 +1,26 @@
 import request from '../requestV2';
 import { colors, prestiges } from './Prestiges';
 import Config from './Config';
+import { registerCommand } from './Commands';
+import { chat, chatf, GRAY } from './Chat';
 
 export function startBwpChatStats() {}
 
-register('command', (...args) => {
-    showStatsFor(args.join(', '));
-}).setName("/bwpstars");
+(function registerBwpChatStatsCommand() {
+    registerCommand('bwpstars', (args) => {
+        showStatsFor(args.join(', '));
+    });
+})();
 
-register('chat', (message) => {
-    checkForDisplayingBWPStats(message);
-    checkForAutoWhoForBedwarsPracticeDotClub(message);
-}).setCriteria('Players in this game: ${message}');
+(function registerBwpGameStartListener() {
+    if (!Config.get('Chat Stats|BWP auto-who & chat-stats'))
+        return;
+
+    register('chat', (message) => {
+        checkForDisplayingBWPStats(message);
+        checkForAutoWhoForBedwarsPracticeDotClub(message);
+    }).setCriteria('Players in this game: ${message}');
+})();
 
 function checkForDisplayingBWPStats(message) {
     setTimeout(() => {
@@ -21,7 +30,7 @@ function checkForDisplayingBWPStats(message) {
 
 function checkForAutoWhoForBedwarsPracticeDotClub(message) {
     setTimeout(() => {
-        ChatLib.chat(`ONLINE: ${message.trim().split(' ').join(', ')}`);
+        chat(`ONLINE: ${message.trim().split(' ').join(', ')}`);
     }, 200);
 }
 
@@ -46,7 +55,7 @@ function callMojangApi(name) {
             callBwpApi(name, response.id);
         })
         .catch(function(response) {
-            ChatLib.chat(`Error for ${name}: ${JSON.stringify(response)}`);
+            chatf(GRAY, `Error for ${name}: ${JSON.stringify(response)}`);
         });
 }
 
@@ -56,17 +65,18 @@ function callBwpApi(name, uuid) {
             showStats(name, response);
         })
         .catch(function(response) {
-            ChatLib.chat(`Error for ${name}: ${JSON.stringify(response)}`);
+            chatf(GRAY, `Error for ${name}: ${JSON.stringify(response)}`);
         });
 }
 
 function showStats(name, response) {
     const colorCode = '&' + colors[prestiges[~~(response.level / 100)].color];
+    const isMe = name.toUpperCase() === Player.getName().toUpperCase();
 
-    if (name.localeCompare(Player.getName()) === 0) {
-        ChatLib.chat(`${colorCode}<<< [✫${response.level}] ${name} >>>`);
+    if (isMe) {
+        chatf(colorCode, `<<< [✫${response.level}] ${name} >>>`);
     } else {
-        ChatLib.chat(`${colorCode}<-- [✫${response.level}] ${name} -->`);
+        chatf(colorCode, `<-- [✫${response.level}] ${name} -->`);
     }
 }
 
@@ -75,7 +85,7 @@ function mojangUrl(name) {
 }
 
 function bwpUrl(uuid) {
-    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=${Config.getSetting('Keys', 'Bwp Api Key')}`;
+    return `https://api.voxyl.net/player/stats/overall/${untrimUuid(uuid)}?api=${Config.get('Chat Stats|BWP API Key')}`;
 }
 
 function unique(value, index, self) {

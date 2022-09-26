@@ -1,6 +1,12 @@
+import Config from './Config';
+import { say } from './Chat';
+
 export function startKeybindListeners() {}
 
-function getKeyBindFromKey(key, description) {
+function getKeyBindIfEnabled(key, description) {
+    if (!Config.get(`Keybinds|${description}`))
+        return null;
+
     let mcKeyBind = Client.getKeyBindFromKey(key);
 
     if (!mcKeyBind) {
@@ -10,37 +16,33 @@ function getKeyBindFromKey(key, description) {
     return mcKeyBind;
 }
 
-let yKeyBind = getKeyBindFromKey(Keyboard.KEY_Y, 'Y - Incoming player');
-let uKeyBind = getKeyBindFromKey(Keyboard.KEY_U, 'U - Stay back');
-let iKeyBind = getKeyBindFromKey(Keyboard.KEY_I, 'I - Coming back');
-let kKeyBind = getKeyBindFromKey(Keyboard.KEY_K, 'K - /who');
-let lKeyBind = getKeyBindFromKey(Keyboard.KEY_L, 'L - /l (k1)');
-let mKeyBind = getKeyBindFromKey(Keyboard.KEY_M, 'M - /l (k2)');
+(function registerKeybinds() {
+    let yKeyBind = getKeyBindIfEnabled(Keyboard.KEY_Y, 'Y - Incoming player');
+    let uKeyBind = getKeyBindIfEnabled(Keyboard.KEY_U, 'U - Stay back');
+    let iKeyBind = getKeyBindIfEnabled(Keyboard.KEY_I, 'I - Coming back');
+    let kKeyBind = getKeyBindIfEnabled(Keyboard.KEY_K, 'K - /who');
 
-let cycle = 0;
-register('tick', () => {
-    if (yKeyBind.isPressed()) {
-        ChatLib.say([
-            'Void, player inc',
-            'Void, inc',
-            'Void, someone inc',
-            'Void, incoming'
-        ][cycle = ++cycle % 4]);
-    }
+    let cycle = 0;
+    register('tick', () => {
+        if (yKeyBind?.isPressed()) {
+            say([
+                'Void, player inc',
+                'Void, inc',
+                'Void, someone inc',
+                'Void, incoming'
+            ][cycle = ++cycle % 4]);
+        }
 
-    if (uKeyBind.isPressed()) {
-        ChatLib.say('Stay back just in case');
-    }
+        if (uKeyBind?.isPressed()) {
+            say('Stay back just in case');
+        }
 
-    if (iKeyBind.isPressed()) {
-        ChatLib.say('I\'m coming back');
-    }
+        if (iKeyBind?.isPressed()) {
+            say('I\'m coming back');
+        }
 
-    if (kKeyBind.isPressed()) {
-        ChatLib.say('/who');
-    }
-
-    if (lKeyBind.isPressed() && mKeyBind.isPressed()) {
-        ChatLib.say('/l');
-    }
-});
+        if (kKeyBind?.isPressed()) {
+            say('/who');
+        }
+    });
+})();

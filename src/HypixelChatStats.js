@@ -1,19 +1,27 @@
+import Config from './Config';
+import { chat } from './Chat';
+
 export function startHypixelChatStats() {}
 
-register('chat', (_, prefixes, name, message, event) => {
-    let chatMessage = ChatLib.getChatMessage(event);
+(function registerHypixelChatStats() {
+    if (!Config.get('Chat Stats|Hypixel lobby chat replace'))
+        return;
 
-    const cms = chatMessage.split('[');
-    const rankColor = cms.length === 2 ? '§7' : cms[1].slice(-2);
+    register('chat', (_, prefixes, name, message, event) => {
+        let chatMessage = ChatLib.getChatMessage(event);
 
-    name = name.replace(/§./g, '');
+        const cms = chatMessage.split('[');
+        const rankColor = cms.length === 2 ? '§7' : cms[1].slice(-2);
 
-    chatMessage = new Message(
-        new TextComponent(chatMessage)
-            .setClick("run_command", `/w +${name}`)
-            .setHoverValue(`§7Does /w +${rankColor + name}§7 on click, for use w/ Cubelify`),
-    );
+        name = name.replace(/§./g, '');
 
-    ChatLib.chat(chatMessage);
-    cancel(event);
-}).setCriteria('§${_}[${prefixes}] ${name}: ${message}');
+        chatMessage = new Message(
+            new TextComponent(chatMessage)
+                .setClick('run_command', `/w +${name}`)
+                .setHoverValue(`§7Does /w +${rankColor + name}§7 on click, for use w/ Cubelify`)
+        );
+
+        chat(chatMessage);
+        cancel(event);
+    }).setCriteria('§${_}[${prefixes}] ${name}: ${message}');
+})();

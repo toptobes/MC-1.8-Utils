@@ -1,3 +1,7 @@
+import { registerCommand } from './Commands';
+import { chatf, DARK_GRAY, GREEN, RED, say } from './Chat';
+import Config from './Config';
+
 let isAfk = false;
 let prevX = Player.getX();
 let prevY = Player.getY();
@@ -5,28 +9,39 @@ let prevY = Player.getY();
 export function startAfkTracker() {}
 
 (function registerAfkCommand() {
-    register('command', (...args) => {
+    if (!Config.get('Afk Tracker|Enabled'))
+        return;
+
+    registerCommand('afk', (args) => {
         switch (true) {
             case args.includes('?'):
                 tellPlayerIfAfkOrNot();
                 break;
+
             case args.includes('false') && isAfk:
                 setAfk(false);
                 break;
+
             case args.includes('false') && !isAfk:
-                ChatLib.chat(`&a<<<--- You are not AFK --->>>`);
+                chatf(RED, '<<<--- You are not AFK --->>>');
                 break;
+
             case args[0] === undefined:
             case args.includes('true'):
                 setAfk(true);
                 break;
+
             default:
-                ChatLib.chat('&c<<<--- Invalid args --->>>');
+                chatf(RED, '<<<--- Invalid args --->>>');
+                break;
         }
-    }).setName('/afk');
+    });
 }());
 
 (function registerAfkTrackers() {
+    if (!Config.get('Afk Tracker|Enabled'))
+        return;
+
     this.disabled = false;
 
     register('worldLoad', (_) => {
@@ -43,7 +58,7 @@ export function startAfkTracker() {}
         if (isAfk || prevX === Player.getX() && prevY === Player.getY()) {
             setAfk(true);
         }
-        resetLastCoords();
+        updateLastCoords();
     }).setDelay(150);
 
     register('step', () => {
@@ -58,11 +73,14 @@ export function startAfkTracker() {}
 }());
 
 (function registerPlayerResponderWhenAfk() {
-    this.afkResponseIndex = 0;
+    if (!Config.get('Afk Tracker|Enabled'))
+        return;
+
+    let afkResponseIndex = 0;
 
     register('chat', () => {
         if (isAfk) {
-            ChatLib.say(`/r ${getAfkResponse()} (Automated message)`);
+            say(`/r ${getAfkResponse()} (Automated message)`)
         }
 
         function getAfkResponse() {
@@ -73,9 +91,9 @@ export function startAfkTracker() {}
 
 function tellPlayerIfAfkOrNot() {
     if (isAfk) {
-        ChatLib.chat('&c<<<--- You are AFK --->>>');
+        chatf(RED, '<<<--- You are AFK --->>>');
     } else {
-        ChatLib.chat('&a<<<--- You are not AFK --->>>');
+        chatf(GREEN, '<<<--- You are not AFK --->>>');
     }
 }
 
@@ -84,22 +102,23 @@ function setAfk(newAfk) {
     isAfk = newAfk;
 
     if (isAfk) {
-        resetLastCoords();
+        updateLastCoords();
     }
 
     switch (true) {
         case isAfk && prevAfk:
-            ChatLib.chat(`&8<<<--- You are AFK --->>>`);
+            chatf(DARK_GRAY, '<<<--- You are AFK --->>>');
             break;
         case isAfk && !prevAfk:
-            ChatLib.chat(`&8<<<--- You are now AFK --->>>`);
+            chatf(DARK_GRAY, '<<<--- You are now AFK --->>>');
             break;
         case !isAfk && prevAfk:
-            ChatLib.chat(`&a<<<--- You are no longer AFK --->>>`);
+            chatf(GREEN, '<<<--- You are no longer AFK --->>>');
+            break;
     }
 }
 
-function resetLastCoords() {
+function updateLastCoords() {
     prevX = Player.getX();
     prevY = Player.getY();
 }
