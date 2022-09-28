@@ -9,11 +9,15 @@ export function StartQuickLeave() {}
 
     register('worldLoad', () => {
         setTimeout(() => {
-            let title = Scoreboard.getTitle().split('').filter(c => c === c.toUpperCase()).join('');
-
-            let justJoinedBedwarsLobby = title.includes('BED') ||
-                                         title.includes(' WAR') ||
-                                         title.includes('ED W')
+            let title = Scoreboard.getTitle()
+                .split('')
+                .filter(c => c === c.toUpperCase())
+                .join('');
+            
+            let justJoinedBedwarsLobby = 
+                title.includes('BED') ||
+                title.includes(' WAR') ||
+                title.includes('ED W')
 
             if (!justJoinedBedwarsLobby) return;
 
