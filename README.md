@@ -3,6 +3,18 @@ A collection of little utility mods using the ChatTriggers framework
 
 # Table of Contents:
 
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Features](#features)
+  - [AutoGG](#autogg)
+  - [AutoWho](#autowho)
+  - [AfkTracker](#afktracker)
+  - [BwpChatStats](#bwpchatstats)
+  - [HypixelChatStats](#hypixelchatstats)
+  - [PartyInviteKick](#partyinvitekick)
+  - [QuickLeave](#quickleave)
+  - [Keybinds](#keybinds)
+
 # Installation:
 
 ### Either:
@@ -12,6 +24,11 @@ A collection of little utility mods using the ChatTriggers framework
 ### or
  - Copy the `src` folder (the folder itself, not just the contents) into `$APPDATA\.minecraft\config\ChatTriggers\modules`
  - Rename `src` to `CarburettorUtilities`
+
+### Dependencies tree:
+ - `SettingsManager`
+ - `requestV2`
+   - `PromiseV2`
 
 # Configuration
 Use `/cu settings`
