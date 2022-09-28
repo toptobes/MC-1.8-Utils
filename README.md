@@ -17,7 +17,7 @@ A collection of little utility mods using the ChatTriggers framework
 
 # Installation:
 
-### Either:
+### First, download the files. Then, either:
  - Go to `<download-path>\Carburettor1.8.9Utils\scripts`
  - With the command line, run `node copyfiles.js`
 
