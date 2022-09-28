@@ -30,12 +30,12 @@ function checkForAutoGG(message) {
         }, 2000);
 
     function getPhrase() {
-        return [
-            'Good fight! Have a nice day :D! Also, I like cars.', gOoDgAmE(), 'GG!!!!!', '!emaG dooG'
-        ][~~(Math.random() * 4)];
-    }
-
-    function gOoDgAmE() {
-        return '(->> "good game" (seq) (map #(if (< 0.5 (rand)) (str/upper-case %) %)) (apply str))';
+        const phrases = [
+            'Good fight! Have a nice day :D! Also, I like cars.',
+            '(->> "good game" (seq) (map #(if (< 0.5 (rand)) (str/upper-case %) %)) (apply str))',
+            'GG!!!!!',
+            '!emaG dooG',
+        ]
+        return phrases[[~~(Math.random() * phrases.length)]];
     }
 }
