@@ -90,6 +90,7 @@ When you join a `bedwarspractice.club` game, it:
 Currently only has one feature, more probably coming soon
 
 Allows you to click on players' names in bedwars lobbies (or duels or maybe skywars not sure) to add them to Cubelify
+
 ![Hypixel lobby chat replace demo](https://github.com/toptobes/Carburettor1.8.9Utils/blob/main/media/hypixellobbychatreplacedemo.gif)
 
 
