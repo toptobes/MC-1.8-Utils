@@ -13,7 +13,7 @@ export function StartQuickLeave() {}
                 .split('')
                 .filter(c => c === c.toUpperCase())
                 .join('');
-
+            
             let justJoinedBedwarsLobby =
                 title.includes('BED') ||
                 title.includes(' WAR') ||
