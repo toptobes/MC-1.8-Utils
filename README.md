@@ -25,6 +25,9 @@ A collection of little utility mods using the ChatTriggers framework
  - Copy the `src` folder (the folder itself, not just the contents) into `$APPDATA\.minecraft\config\ChatTriggers\modules`
  - Rename `src` to `CarburettorUtilities`
 
+![](https://github.com/toptobes/Carburettor1.8.9Utils/blob/main/media/cuctfiledemo1.png)
+![](https://github.com/toptobes/Carburettor1.8.9Utils/blob/main/media/cuctfiledemo2.png)
+
 ### Dependencies tree:
  - `SettingsManager`
  - `requestV2`
